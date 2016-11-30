@@ -27,8 +27,8 @@ Orientations:
     <tbody>
         <tr>
         	<td>
-        		<table class="list-container">
-        			<tbody>
+        		<table>
+        			<tbody class="list-container">
         			    <tr class="list-row">
         				    <td>
         					    <label class="control-label">File: </label>
