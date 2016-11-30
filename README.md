@@ -21,7 +21,7 @@ Orientations:
 ```sh
     <script src="your_js_folder/jquery.dynamic-list.js"></script>
 ```
- - Build the html structure like this, you can build difrentely and or user bootstrap layout definitios and Glyphicons as you want
+ - Build the html structure like this, you can build difrentely and or use bootstrap layout definitios and Glyphicons as you want
 ```sh
 <table class="dynamic-list">
     <tbody>
