@@ -17,7 +17,7 @@ Orientations:
   - When you are using an other kind of UI plugin in some input or select inside the dynamic list, you should build and inform the "btnAdd"  function, in this function you should remove "destroy" all other UI instances and change the inputs ID's before cloning a row, then you can call or build your own clear row method, insert the new row and after all this you can apply all removed UI again.
 
 ### How to use
- - Link the plugin on you html.
+ - Link the plugin on your html.
 ```sh
     <script src="your_js_folder/jquery.dynamic-list.js"></script>
 ```
