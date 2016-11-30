@@ -58,3 +58,11 @@ $(".dynamic-list").dynamiclist({
     autoClearNewRow: true
 });
 ```
+
+### Example
+ - Start the pliguin
+![N|Solid](http://imageshack.com/a/img922/4738/pa5m1C.png)
+ - Add tow new rows by click on add button [+]
+![N|Solid](http://imageshack.com/a/img921/1807/oda5qp.png)
+ - Removed the middle row by click on the respective remove button [X]
+![N|Solid](http://imageshack.com/a/img922/7136/1oFnMM.png)
