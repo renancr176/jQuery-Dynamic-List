@@ -2,7 +2,7 @@
 
 Plungin developed for the purpose of managing a list of subforms, for example a list of repeated configurations with numerous inputs and selects defined by the developer.
 
-Pligin Options
+Plugin Options
   - addButtomClass: Inform the class name that identify the button to add new row (default - btn-add)
   - removeButtomClass: Inform the class name that identify the button to remove the parent row (default - btn-remove)
   - listContainerClass: Inform the class name that identify the rows container (default - list-container)
