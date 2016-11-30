@@ -60,9 +60,10 @@ $(".dynamic-list").dynamiclist({
 ```
 
 ### Example
- - Start the pliguin
+
+ - Default row will be already there and I've selected the first file.
 ![N|Solid](http://imageshack.com/a/img922/4738/pa5m1C.png)
- - Add tow new rows by click on add button [+]
+ - I Added tow new rows by click on add button [+] and selected tow other files.
 ![N|Solid](http://imageshack.com/a/img921/1807/oda5qp.png)
- - Removed the middle row by click on the respective remove button [X]
+ - I Removed the middle row by click on the respective remove button [X]
 ![N|Solid](http://imageshack.com/a/img922/7136/1oFnMM.png)
