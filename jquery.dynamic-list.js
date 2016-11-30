@@ -11,7 +11,7 @@
 									btnRemove: null,
 									orderInsert: 'append',
 									autoClearNewRow: false,
-									cleanMethod: null
+									clearMethod: null
 								}, options );
 		
 		$.each($(this), function(){
