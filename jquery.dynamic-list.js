@@ -60,8 +60,8 @@
 			}else if($.isFunction(settings.cleanMethod)){
 				settings.cleanMethod($(this).closest('.'+settings.rowClass));
 			}else{
-				newRow.find('input').val('');
-				$.each(newRow.find('select'), function(){// force select the first option
+				$(this).closest('.'+settings.rowClass).find('input').val('');
+				$.each($(this).closest('.'+settings.rowClass).find('select'), function(){// force select the first option
 					$(this).val($(this).find('option:first').val()).trigger('change');
 				});
 			}
