@@ -74,8 +74,10 @@
         		var thisRow = $(this);
         		$.each(thisRow.find('input, select, textarea'), function(){
         			var thisName = $(this).attr('name');
-        			thisName = thisName.replace(/\[.*?\]/, '['+index+']');
-        			$(this).attr('name',thisName);
+				if(typeof thisName != typeof undefined){
+					thisName = thisName.replace(/\[.*?\]/, '['+index+']');
+					$(this).attr('name',thisName);
+				}
         		});
         		index++;		
 			});
