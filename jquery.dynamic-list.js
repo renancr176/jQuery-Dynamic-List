@@ -38,6 +38,12 @@
 					});
 				}else if($.isFunction(settings.cleanMethod)){
 					settings.cleanMethod(newRow);
+				}else{
+					lastRow = dynamiclist.find('.'+settings.listContainerClass+' .'+settings.rowClass+':last');
+					$.each(lastRow.find('input, select'), function(){
+						findThisElementByName = $(this).prop("tagName")+'[name^="'+$(this).attr('name').replace(/\[.*\]/,'')+'["]';
+						newRow.find(findThisElementByName).val($(this).val());
+					});
 				}
 				switch(settings.orderInsert){
 					case 'prepend':
