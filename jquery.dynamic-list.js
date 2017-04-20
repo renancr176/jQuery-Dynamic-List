@@ -81,8 +81,21 @@
         		$.each(thisRow.find('input, select, textarea'), function(){
         			var thisName = $(this).attr('name');
 				if(typeof thisName != typeof undefined){
-					thisName = thisName.replace(/\[.*?\]/, '['+index+']');
-					$(this).attr('name',thisName);
+					var start = thisName.indexOf('[');
+					while(start != -1 && start < thisName.length){
+						start++;
+						if(thisName.substring(start,(start+1)) == ']'){
+							break;
+						}else if((thisName.substring(start)).indexOf('[') != -1){
+							start += (thisName.substring(start)).indexOf('[');
+						}else{
+							start = -1;	
+						}
+					}
+					if(start != -1){
+						thisName = (thisName.substring(0,(start-1)))+(thisName.substring(start-1)).replace(/\[.*?\]/, '['+index+']');
+						$(this).attr('name',thisName);
+					}
 				}
         		});
         		index++;		
