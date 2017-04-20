@@ -34,15 +34,42 @@
 				if(!$.isFunction(settings.cleanMethod) && settings.autoClearNewRow){
 					newRow.find('input').val('');
 					$.each(newRow.find('select'), function(){// force select the first option
-						$(this).val($(this).find('option:first').val()).trigger('change');
+						if(typeof $(this).attr('multiple') == typeof undefined){
+							$(this).val($(this).find('option:first').val()).trigger('change');
+						}else{
+							$(this).find('option').removeAttr('selected').prop('selected',false);
+						}
 					});
 				}else if($.isFunction(settings.cleanMethod)){
 					settings.cleanMethod(newRow);
 				}else{
 					lastRow = dynamiclist.find('.'+settings.listContainerClass+' .'+settings.rowClass+':last');
 					$.each(lastRow.find('input, select'), function(){
-						findThisElementByName = $(this).prop("tagName")+'[name^="'+$(this).attr('name').replace(/\[.*\]/,'')+'["]';
-						newRow.find(findThisElementByName).val($(this).val());
+						var thisElemPreviewRow = $(this);
+						var start = thisElemPreviewRow.attr('name').indexOf('[');
+						while(start != -1 && start < thisElemPreviewRow.attr('name').length){
+							start++;
+							if(thisElemPreviewRow.attr('name').substring(start,(start+1)) == ']' || jQuery.isNumeric(thisElemPreviewRow.attr('name').substring(start,(start+1)))){
+								break;
+							}else if((thisElemPreviewRow.attr('name').substring(start)).indexOf('[') != -1){
+								start += (thisElemPreviewRow.attr('name').substring(start)).indexOf('[');
+							}else{
+								start = -1;	
+							}
+						}
+						if(start != -1){
+							findThisElementByName = thisElemPreviewRow.prop("tagName")+'[name^="'+(thisElemPreviewRow.attr('name').substring(0,(start-1)))+'"]';
+							if(typeof thisElemPreviewRow.attr('multiple') == typeof undefined){
+								newRow.find(findThisElementByName).val(thisElemPreviewRow.val());
+							}else{
+								var optionsSelected = thisElemPreviewRow.find('option:selected').map(function(){ return $(this).val(); }).get();
+								$.each(newRow.find(findThisElementByName+'>option'), function(){
+									if(jQuery.inArray( $(this).val(), optionsSelected ) > -1){
+										$(this).attr('selected','selected').prop('selected', true);
+									}
+								});
+							}
+						}
 					});
 				}
 				switch(settings.orderInsert){
@@ -84,7 +111,7 @@
 					var start = thisName.indexOf('[');
 					while(start != -1 && start < thisName.length){
 						start++;
-						if(thisName.substring(start,(start+1)) == ']'){
+						if(thisName.substring(start,(start+1)) == ']' || jQuery.isNumeric(thisName.substring(start,(start+1)))){
 							break;
 						}else if((thisName.substring(start)).indexOf('[') != -1){
 							start += (thisName.substring(start)).indexOf('[');
