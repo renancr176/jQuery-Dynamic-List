@@ -10,8 +10,8 @@ Plugin Options
   - orderInsert: Method to insert new row, there are two options, prepend or append (default - append)
   - autoClearNewRow: Clear the new row insputs and select the first option of a select (default - false)
   - clearMethod: User function responsable for set the default of the new cloned row (default - null or callback(newRow))
-  - btnAdd: User function responsable to clone and insert the new row (default - null)
-  - btnRemove: User function responsable to remove the row (default - null)
+  - btnAdd: User function responsable to clone and insert the new row (default - null or callback(dynamiclist, settings))
+  - btnRemove: User function responsable to remove the row (default - null or callback(dynamiclist, settings, rowToRemove))
 
 Orientations:
   - When you are using an other kind of UI plugin in some input or select inside the dynamic list, you should build and inform the "btnAdd"  function, in this function you should remove "destroy" all other UI instances and change the inputs ID's before cloning a row, then you can call or build your own clear row method, insert the new row and after all this you can apply all removed UI again.
@@ -58,22 +58,6 @@ $(".dynamic-list").dynamiclist({
     autoClearNewRow: true
 });
 ```
- - Clear method example
-```sh
-$(".dynamic-list").dynamiclist({
-  clearMethod: function(newRow){
-    newRow.find('input').val('');
-    $.each(newRow.find('select'), function(){// force select the first option
-        if(typeof $(this).attr('multiple') == typeof undefined){
-            $(this).val($(this).find('option:first').val()).trigger('change');
-        }else{
-            $(this).find('option').removeAttr('selected').prop('selected',false);
-        }
-    });
-  }
-});
-```
-
  - Buttom ADD method example
 ```sh
 $(".dynamic-list").dynamiclist({
@@ -97,6 +81,44 @@ $(".dynamic-list").dynamiclist({
     dynamiclist.find('.'+settings.listContainerClass).append(newRow);
     
     //Applay all plugins instance again
+  }
+});
+```
+ - Button Remove method example
+```sh
+$(".dynamic-list").dynamiclist({
+  clearMethod: function(dynamiclist, settings, rowToRemove){
+     //If has more than one row, it cam be removed
+     if(dynamiclist.find('.'+settings.listContainerClass+' .'+settings.rowClass).length > 1){ 
+         rowToRemove.remove();
+     }else{
+        //Clear this last row instead of removing it
+        rowToRemove.find('input').val('');
+        // force select the first option
+        $.each(rowToRemove.find('select'), function(){// force select the first option
+            if(typeof $(this).attr('multiple') == typeof undefined){
+                $(this).val($(this).find('option:first').val()).trigger('change');
+            }else{
+                $(this).find('option').removeAttr('selected').prop('selected',false);
+            }
+        });
+     }
+  }
+});
+```
+
+ - Clear method example
+```sh
+$(".dynamic-list").dynamiclist({
+  clearMethod: function(newRow){
+    newRow.find('input').val('');
+    $.each(newRow.find('select'), function(){// force select the first option
+        if(typeof $(this).attr('multiple') == typeof undefined){
+            $(this).val($(this).find('option:first').val()).trigger('change');
+        }else{
+            $(this).find('option').removeAttr('selected').prop('selected',false);
+        }
+    });
   }
 });
 ```
