@@ -102,7 +102,7 @@ $(".dynamic-list").dynamiclist({
  - Button Remove method example
 ```sh
 $(".dynamic-list").dynamiclist({
-  clearMethod: function(dynamiclist, settings, rowToRemove){
+  btnRemove: function(dynamiclist, settings, rowToRemove){
      //If has more than one row, it cam be removed
      if(dynamiclist.find('.'+settings.listContainerClass+' .'+settings.rowClass).length > 1){ 
          rowToRemove.remove();
