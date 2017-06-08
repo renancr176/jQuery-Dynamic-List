@@ -59,13 +59,44 @@ $(".dynamic-list").dynamiclist({
 });
 ```
  - Clear method example
- ```sh
+```sh
 $(".dynamic-list").dynamiclist({
   clearMethod: function(newRow){
     newRow.find('input').val('');
-				$.each(newRow.find('select'), function(){// force select the first option
-        $(this).val($(this).find('option:first').val()).trigger('change');
+    $.each(newRow.find('select'), function(){// force select the first option
+        if(typeof $(this).attr('multiple') == typeof undefined){
+            $(this).val($(this).find('option:first').val()).trigger('change');
+        }else{
+            $(this).find('option').removeAttr('selected').prop('selected',false);
+        }
     });
+  }
+});
+```
+
+ - Buttom ADD method example
+```sh
+$(".dynamic-list").dynamiclist({
+  btnAdd: function(dynamiclist, settings){
+    //Destroy all plugins instances
+    
+    //Clone first or last row
+    var newRow = dynamiclist.find('.'+settings.listContainerClass+' .'+settings.rowClass+':first').clone(true, true);
+    
+    //Clear it if you want
+    newRow.find('input').val('');
+    $.each(newRow.find('select'), function(){// force select the first option
+        if(typeof $(this).attr('multiple') == typeof undefined){
+            $(this).val($(this).find('option:first').val()).trigger('change');
+        }else{
+            $(this).find('option').removeAttr('selected').prop('selected',false);
+        }
+    });
+    
+    //Add new cloned row
+    dynamiclist.find('.'+settings.listContainerClass).append(newRow);
+    
+    //Applay all plugins instance again
   }
 });
 ```
