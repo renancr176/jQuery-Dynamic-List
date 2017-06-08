@@ -95,6 +95,7 @@ $(".dynamic-list").dynamiclist({
     //Add new cloned row
     dynamiclist.find('.'+settings.listContainerClass).append(newRow);
     
+    //Change inputs, selects and others its attribute id before applay the plungins instances
     //Applay all plugins instance again
   }
 });
