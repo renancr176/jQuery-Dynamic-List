@@ -58,6 +58,21 @@ $(".dynamic-list").dynamiclist({
     autoClearNewRow: true
 });
 ```
+ - Settings
+```sh
+settings = {
+   addButtomClass: "btn-add",
+   removeButtomClass: "btn-remove",
+   listContainerClass: "list-container",
+   rowClass: 'list-row',
+   btnAdd: (null or yourCallbackFunction),
+   btnRemove: (null or yourCallbackFunction),
+   orderInsert: ('append' or 'prepend'),
+   autoClearNewRow: (false or true),
+   clearMethod: (null or yourCallbackFunction)
+}
+```
+                  
  - Buttom ADD method example
 ```sh
 $(".dynamic-list").dynamiclist({
