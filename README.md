@@ -9,7 +9,7 @@ Plugin Options
   - rowClass: Inform the class name that identify rows (default - list-row)
   - orderInsert: Method to insert new row, there are two options, prepend or append (default - append)
   - autoClearNewRow: Clear the new row insputs and select the first option of a select (default - false)
-  - clearMethod: User function responsable for set the default of the new cloned row (default - null)
+  - clearMethod: User function responsable for set the default of the new cloned row (default - null or callback(newRow))
   - btnAdd: User function responsable to clone and insert the new row (default - null)
   - btnRemove: User function responsable to remove the row (default - null)
 
@@ -56,6 +56,17 @@ $(".dynamic-list").dynamiclist();
 or passing options
 $(".dynamic-list").dynamiclist({
     autoClearNewRow: true
+});
+```
+ - Clear method example
+ ```sh
+$(".dynamic-list").dynamiclist({
+  clearMethod: function(newRow){
+    newRow.find('input').val('');
+				$.each(newRow.find('select'), function(){// force select the first option
+        $(this).val($(this).find('option:first').val()).trigger('change');
+    });
+  }
 });
 ```
 
