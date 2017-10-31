@@ -11,7 +11,8 @@
 									btnRemove: null,
 									orderInsert: 'append',
 									autoClearNewRow: false,
-									clearMethod: null
+									clearMethod: null, 
+									manageIndexes: true
 								}, options );
 		
 		$.each($(this), function(){
@@ -81,7 +82,11 @@
 					break;
 				}
 			}
-			manageIndexes(dynamiclist);
+			if(jQuery.isFunction(settings.manageIndexes)){
+				settings.manageIndexes(dynamiclist);
+			}else if(!jQuery.isFunction(settings.manageIndexes) && settings.manageIndexes){
+				manageIndexes(dynamiclist);
+			}
         });
         
         $(this).on('click', '.'+settings.removeButtomClass, function(){
