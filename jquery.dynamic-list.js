@@ -103,7 +103,11 @@
 					$(this).val($(this).find('option:first').val()).trigger('change');
 				});
 			}
-			manageIndexes(dynamiclist);
+			if(jQuery.isFunction(settings.manageIndexes)){
+				settings.manageIndexes(dynamiclist);
+			}else if(!jQuery.isFunction(settings.manageIndexes) && settings.manageIndexes){
+				manageIndexes(dynamiclist);
+			}
         });
         
         function manageIndexes(dynamiclist) {
