@@ -12,6 +12,7 @@ Plugin Options
   - clearMethod: User function responsable for set the default of the new cloned row (default - null or callback(newRow))
   - btnAdd: User function responsable to clone and insert the new row (default - null or callback(dynamiclist, settings))
   - btnRemove: User function responsable to remove the row (default - null or callback(dynamiclist, settings, rowToRemove))
+  - manageIndexes: Bolean or user function responsable for manage input name array index callback(dynamiclist)
 
 Orientations:
   - When you are using an other kind of UI plugin in some input or select inside the dynamic list, you should build and inform the "btnAdd"  function, in this function you should remove "destroy" all other UI instances and change the inputs ID's before cloning a row, then you can call or build your own clear row method, insert the new row and after all this you can apply all removed UI again.
